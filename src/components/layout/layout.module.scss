@@ -1,0 +1,34 @@
+@use 'src/styles/constants';
+@use 'src/styles/breakpoints';
+@use 'sass:math';
+
+// Box
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+
+  &.large {
+    padding: constants.$box-padding-large;
+
+    @include breakpoints.small {
+      padding: constants.$box-padding-large
+        math.div(constants.$box-padding-large, 2);
+    }
+  }
+  &.small {
+    padding: constants.$box-padding-small;
+
+    @include breakpoints.small {
+      padding: constants.$box-padding-small
+        math.div(constants.$box-padding-large, 2);
+    }
+  }
+}
+
+.space {
+  p {
+    margin: constants.$text-margin-vertical 0;
+  }
+}

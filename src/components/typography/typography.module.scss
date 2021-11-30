@@ -1,0 +1,112 @@
+@use 'src/styles/constants';
+@use 'src/styles/breakpoints';
+
+// Heading
+
+.heading {
+  color: constants.$text-color-primary;
+  font-weight: bold;
+
+  &.large {
+    font-size: constants.$heading-font-size-large;
+  }
+  &.medium {
+    font-size: constants.$heading-font-size-medium;
+  }
+  &.small {
+    font-size: constants.$heading-font-size-small;
+  }
+}
+
+// Text
+
+.text {
+  color: constants.$text-color-secondary;
+  line-height: 1.8em;
+
+  &.large {
+    font-size: constants.$text-font-size-large;
+  }
+  &.medium {
+    font-size: constants.$text-font-size-medium;
+  }
+  &.small {
+    font-size: constants.$text-font-size-small;
+  }
+  &.xsmall {
+    font-size: constants.$text-font-size-xsmall;
+  }
+
+  a {
+    border-bottom: solid 1px constants.$color-dark;
+    transition: all constants.$transition-duration-normal ease;
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      border-bottom-color: transparent;
+      color: constants.$text-color-primary;
+      transition: all 300ms ease;
+    }
+  }
+}
+
+// Icon
+
+.icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.iconGroup {
+  display: flex;
+  flex-wrap: wrap;
+  margin: constants.$text-margin-vertical 0;
+
+  .icon {
+    margin-right: 1em;
+  }
+}
+
+// ParagraphWithIcon
+
+.withIcon {
+  display: flex;
+
+  @include breakpoints.xsmall {
+    flex-direction: column;
+  }
+
+  .icon {
+    margin: {
+      top: -0.1em;
+      right: 2em;
+      bottom: 2em;
+      left: 0.4em;
+    }
+  }
+}
+
+// ParagraphWithImage
+
+.withImage {
+  display: flex;
+  align-items: center;
+  overflow-x: hidden;
+
+  @include breakpoints.medium {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  img {
+    display: block;
+    width: constants.$paragraph-image-size * 1.2;
+    height: constants.$paragraph-image-size;
+    object-fit: cover;
+
+    @include breakpoints.medium {
+      width: 100vw;
+    }
+  }
+}

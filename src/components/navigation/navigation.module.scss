@@ -1,0 +1,107 @@
+@use 'src/styles/constants';
+@use 'src/styles/breakpoints';
+@use 'sass:color';
+
+// Navigation
+
+.navigation {
+  width: constants.$navigation-width;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background: constants.$navigation-color-background;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include breakpoints.normal {
+    position: sticky;
+    width: 100%;
+    flex-direction: row;
+  }
+
+  @include breakpoints.xsmall {
+    display: none;
+  }
+}
+
+// Item
+
+.item {
+  display: block;
+  position: relative;
+  padding: 1.5em 0;
+  margin: 1.25em 32px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: right;
+  letter-spacing: constants.$navigation-letter-spacing;
+  font-weight: bold;
+  font-size: constants.$navigation-font-size;
+  color: constants.$text-color-idle;
+
+  @include breakpoints.normal {
+    margin: 0;
+    padding: 2em;
+    flex-basis: 15%;
+    text-align: center;
+  }
+
+  @include breakpoints.medium {
+    flex-basis: 20%;
+  }
+
+  @include breakpoints.small {
+    flex-basis: 25%;
+    padding: 2em 1.5em;
+  }
+
+  &:hover {
+    color: constants.$text-color-hover;
+  }
+
+  &.active {
+    color: constants.$text-color-primary;
+
+    &::after {
+      transition: width constants.$transition-duration-normal ease;
+      width: 100%;
+      left: 0;
+    }
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 2px;
+  }
+  &::before {
+    width: 100%;
+    background: color.scale(
+      constants.$navigation-color-background,
+      $lightness: 12%
+    );
+  }
+  &::after {
+    background: linear-gradient(
+      to left,
+      constants.$color-primary,
+      constants.$color-secondary
+    );
+    width: 0;
+    transition: width constants.$transition-duration-normal ease;
+  }
+  &:nth-child(even)::after {
+    @include breakpoints.normal {
+      background: linear-gradient(
+        to right,
+        constants.$color-primary,
+        constants.$color-secondary
+      );
+    }
+  }
+}

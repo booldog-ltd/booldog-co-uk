@@ -1,0 +1,60 @@
+@use 'src/styles/constants';
+@use 'src/styles/breakpoints';
+
+// Form
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+// Group
+
+.group {
+  display: flex;
+
+  @include breakpoints.small {
+    flex-direction: column;
+  }
+
+  .field:not(:last-child) {
+    margin-right: 2em;
+
+    @include breakpoints.small {
+      margin-right: 0;
+    }
+  }
+}
+
+// Field
+
+.field {
+  color: constants.$text-color-primary;
+  margin-bottom: 2em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: constants.$heading-font-size-small;
+
+  input,
+  textarea {
+    color: inherit;
+    border-radius: 5px;
+    background: constants.$color-dark;
+    border: none;
+    padding: 0.75em 1em;
+    font-size: 0.8em;
+
+    &:focus {
+      box-shadow: constants.$text-color-primary 0 0 0 1px;
+      outline: none;
+    }
+  }
+
+  label {
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-bottom: 1em;
+  }
+}

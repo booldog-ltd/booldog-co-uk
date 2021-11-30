@@ -1,0 +1,73 @@
+@use 'src/styles/constants';
+@use 'src/styles/breakpoints';
+
+$_border: 1px solid constants.$color-dark;
+
+// Contact
+
+.contact {
+  background: constants.$backround-color-primary;
+}
+
+.items {
+  display: flex;
+  margin-top: 1em;
+  width: 100%;
+
+  @include breakpoints.medium {
+    flex-direction: column;
+  }
+
+  form {
+    margin-right: 2em;
+    max-width: 768px;
+  }
+
+  .info {
+    $_border: 1px solid constants.$color-dark;
+
+    flex-basis: 33%;
+    min-width: 300px;
+    padding-left: 2em;
+    border-left: $_border;
+
+    @include breakpoints.medium {
+      border-left: none;
+      border-top: $_border;
+      padding-left: 0;
+      padding-top: 2em;
+    }
+
+    @include breakpoints.xsmall {
+      min-width: 220px;
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  padding: constants.$box-padding-large;
+  background: constants.$color-dark;
+
+  @include breakpoints.xsmall {
+    flex-direction: column;
+  }
+
+  & > p {
+    color: constants.$text-color-tertiary;
+
+    &:not(:last-child) {
+      padding-right: 2em;
+      border-right: 1px solid currentColor;
+    }
+
+    &:not(:first-child) {
+      padding-left: 2em;
+    }
+
+    @include breakpoints.xsmall {
+      padding: 0 !important;
+      border: none !important;
+    }
+  }
+}

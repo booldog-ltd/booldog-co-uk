@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/default.astro';
+import { Home } from '../sections/index/home/home.tsx';
+import { Work } from '../sections/index/work/work.tsx';
+import { About } from '../sections/index/about/about.tsx';
+import { IndexNavigation } from '../sections/index/navigation.tsx';
+---
+
+<Layout title="BOOLDOG Limited">
+  <Home />
+  <IndexNavigation client:idle />
+  <About />
+  <Work />
+</Layout>
+
+<style lang="scss">
+  @use 'src/styles/constants';
+  @use 'src/styles/breakpoints';
+
+  body {
+    margin-left: constants.$global-offset-left;
+    background-color: constants.$color-tertiary;
+    background-image: url('/assets/background.svg');
+    background-attachment: scroll;
+
+    @include breakpoints.normal {
+      margin-left: 0;
+    }
+  }
+</style>
